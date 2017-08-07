@@ -1,9 +1,10 @@
 #!/bin/sh
 
-PROJECTS_DIR=${HOME}/Code
+PROJECTS_DIR=${HOME}/code
 
 # setup folder structure
 mkdir ${PROJECTS_DIR}
+mkdir ${HOME}/github
 
 # brew setup
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -96,10 +97,12 @@ brew install pkg-config
 # brew install pwgen
 brew install python
 # brew install python3
+brew install redis
 brew install readline
 brew install ruby
 # brew install sphinx-doc
 brew install sqlite
+brew install ssh-copy-id
 brew install thefuck
 # brew install tidy-html5
 # brew install unibilium
@@ -120,6 +123,7 @@ function installcask() {
     brew cask install "${@}" --force 2> /dev/null
 }
 
+installcask adapter
 # installcask aegisub
 installcask appcleaner
 # installcask arduino
@@ -127,33 +131,43 @@ installcask appcleaner
 # installcask cyberduck
 # installcask datagrip
 # installcask dbeaver-enterprise
+installcask discord
 # installcask docker
 installcask dropbox
 installcask filezilla
 installcask firefox
 # installcask flickr-uploadr
+installcask flux
 # installcask fork
 # installcask franz
 # installcask fritzing
 # installcask genymotion
-# installcask gitkraken
+installcask gitkraken
 installcask google-chrome
 # installcask google-chrome-canary
 # installcask google-earth
+installcask google-photos-backup-and-sync
 # installcask google-play-music-desktop-player
 # installcask harvest
+installcask handbrake
+installcask imageoptim
 # installcask insomnia
 # installcask intellij-idea
+installcask iterm2
 installcask java
 # installcask jubler
 installcask kap
 installcask keepingyouawake
+installcask lastpass
+installcask libreoffice
 # installcask macdown
 # installcask macpass
+installcask marp
 # installcask mattermost
 # installcask meld
 # installcask mplayerx
 # installcask mysqlworkbench
+installcask netspot
 # installcask paw
 # installcask pgadmin4
 installcask phpstorm
@@ -166,20 +180,27 @@ installcask robomongo
 installcask screenhero
 installcask sequel-pro
 # installcask sketchup
+installcask skitch
 installcask skype
+installcask slack
 # installcask smartgit
 # installcask sourcetree
+installcask spectacle
 installcask spotify
+installcask sqlitebrowser
 # installcask sqlpro-studio
 # installcask stremio
+installcask sublime-text
 # installcask subtitle-master
+installcask telegram
 # installcask teamviewer
+installcask toggldesktop
 # installcask totalterminal
 # installcask tunnelblick
 # installcask vagrant
 # installcask vagrant-manager
 # installcask valentina-studio
-# installcask virtualbox
+installcask virtualbox
 # installcask virtualbox-extension-pack
 # installcask visual-studio
 # installcask visual-studio-code
@@ -190,6 +211,28 @@ installcask vlc
 # installcask xquartz
 installcask xtrafinder
 # installcask zazu
+
+# :: Missing apps
+# Gifox
+# Bear Writer (AppStore)
+# Alfred 3
+# Transmit
+# Monosnap (AppStore)
+# Wunderlist (AppStore)
+# Airmail (AppStore)
+# Bandwidth+ (AppStore)
+# Memory Clean 2 (AppStore)
+# Tweetdeck (AppStore)
+
+# Install oh-my-zsh
+curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
+chsh -s /usr/local/bin/zsh
+
+# Fonts
+brew tap caskroom/fonts
+brew install font-hack
+brew install font-fira-code
+brew install font-source-code-pro
 
 # npm dependencies that I'm not likely to live without
 # npm install -g adonis-cli
@@ -214,13 +257,13 @@ npm install -g npm
 # npm install -g wcwidth
 
 ## Get dotfiles repo and setup symlinks
-git clone https://github.com/lucasmezencio/dotfiles.git ${PROJECTS_DIR}/dotfiles
+git clone https://github.com/jgrossi/dotfiles.git ${PROJECTS_DIR}/dotfiles
 cd ${HOME}
-ln -si ${PROJECTS_DIR}/dotfiles/.oh-my-zsh/themes/af-magic-mine.zsh-theme .oh-my-zsh/themes/af-magic-mine.zsh-theme
-ln -si ${PROJECTS_DIR}/dotfiles/.bash_aliases .bash_aliases
+# ln -si ${PROJECTS_DIR}/dotfiles/.oh-my-zsh/themes/af-magic-mine.zsh-theme .oh-my-zsh/themes/af-magic-mine.zsh-theme
+ln -si ${PROJECTS_DIR}/dotfiles/.aliases .aliases
 ln -si ${PROJECTS_DIR}/dotfiles/.bash_profile .bash_profile
 ln -si ${PROJECTS_DIR}/dotfiles/.env .env
 ln -si ${PROJECTS_DIR}/dotfiles/.gitconfig .gitconfig
 ln -si ${PROJECTS_DIR}/dotfiles/.gitignore_global .gitignore_global
-ln -si ${PROJECTS_DIR}/dotfiles/.vimrc .vimrc
+# ln -si ${PROJECTS_DIR}/dotfiles/.vimrc .vimrc
 ln -si ${PROJECTS_DIR}/dotfiles/.zshrc .zshrc
